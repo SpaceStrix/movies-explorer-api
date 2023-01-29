@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Дипломный проект",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "app.js",
     "dev": "nodemon app.js",
     "lint": "npx eslint .",
     "lint:fix": "eslint . --fix"
