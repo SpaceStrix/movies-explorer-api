@@ -4,4 +4,4 @@ class Forbidden extends Error {
     this.statusCode = 403;
   }
 }
-export default Forbidden;
+module.exports = Forbidden;

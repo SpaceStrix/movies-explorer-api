@@ -4,4 +4,4 @@ class InternalServer extends Error {
     this.statusCode = 500;
   }
 }
-export default InternalServer;
+module.exports = InternalServer;

@@ -1,7 +1,18 @@
-import express from 'express';
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
+const { PORT, DB_CONNECT } = process.env;
 const app = express();
 
-app.listen(3000, () => {
-  console.log('PORT 3000');
+mongoose.set('strictQuery', false); // убираем варнинг mongoose
+mongoose.connect(DB_CONNECT);
+
+app.use(express.json());
+
+app.use(routes); // Общий роут
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
 });
