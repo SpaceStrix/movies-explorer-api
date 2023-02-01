@@ -1,20 +1,21 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-
+// Модель
 const User = require('../models/users');
-
-const { NODE_ENV, JWT_SECRET } = process.env;
-
+// Ошибки
 const NotFound = require('../errors/NotFound');
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
+// .env переменные
+const { NODE_ENV, JWT_SECRET } = process.env;
 
+// Получаем данные пользователя
 module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => res.send({ email: user.email, name: user.name }))
     .catch((err) => next(err));
 };
-
+// Обновляем email и name
 module.exports.updateDataUser = (req, res, next) => {
   const { email, name } = req.body;
   User.findByIdAndUpdate(
@@ -37,10 +38,9 @@ module.exports.updateDataUser = (req, res, next) => {
     });
 };
 
-// * Создаем пользователя email, password и name
+// Создаем пользователя email, password и name
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
-
   bcrypt
     .hash(password, 10)
     .then((hash) => User.create({
@@ -65,7 +65,7 @@ module.exports.createUser = (req, res, next) => {
     });
 };
 
-// * Авторизация
+// Авторизация
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)

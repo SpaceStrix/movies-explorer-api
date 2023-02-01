@@ -1,18 +1,20 @@
+// Модель
 const Movie = require('../models/movies');
 
-// Errors
+// Ошибки
 const NotFound = require('../errors/NotFound');
 const Forbidden = require('../errors/Forbidden');
 const BadRequest = require('../errors/BadRequest');
 
-// # возвращает все сохранённые текущим  пользователем фильмы
+// Возвращает все сохранённые текущим пользователем фильмы
 module.exports.getMovies = (req, res, next) => {
   Movie.find({})
     .then((movie) => res.send(movie))
     .catch((err) => next(err));
 };
+// Создает фильм
 module.exports.createMovie = (req, res, next) => {
-  // const owner = req.user._id;
+  const owner = req.user._id;
   const {
     country,
     director,
@@ -39,7 +41,7 @@ module.exports.createMovie = (req, res, next) => {
     movieId,
     nameRU,
     nameEN,
-    // owner,
+    owner,
   })
     .then((movie) => res.send(movie))
     .catch((err) => {
@@ -51,16 +53,22 @@ module.exports.createMovie = (req, res, next) => {
     });
 };
 
-// # удаляет сохранённый фильм по id
+// Удаляет сохранённый фильм по id
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findByIdAndRemove(req.params.movieId)
+  Movie.findById(req.params.movieId)
     .then((movie) => {
       if (!movie) throw new NotFound('Фильм с указанным id не найдена');
 
       if (!movie.owner.equals(req.user._id)) {
         throw new Forbidden('У вас нет прав');
       } else {
-        res.status(200).send(movie);
+        Movie.deleteOne(movie)
+          .then(() => {
+            res.status(200).send(movie);
+          })
+          .catch((err) => {
+            next(err);
+          });
       }
     })
     .catch((err) => {

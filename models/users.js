@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
+// Ошибки
 const Unauthorized = require('../errors/Unauthorized');
 
+// Схема Users
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -23,7 +25,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 2,
     maxlength: 30,
-    default: 'Lindsay Prohaska V',
   },
 });
 

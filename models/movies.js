@@ -46,11 +46,11 @@ const movieSchema = new mongoose.Schema({
       message: 'Поле "thumbnail" должно быть валидным url-адресом.',
     },
   },
-  // owner: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'user',
-  //   required: true,
-  // },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+  },
   movieId: {
     type: Number,
     required: true,
@@ -68,7 +68,6 @@ module.exports = mongoose.model('movie', movieSchema);
 // trailerLink — ссылка на трейлер фильма. Обязательное поле-строка. Запишите её URL-адресом.
 // thumbnail — миниатюрное изображение постера к фильму. Обязательное поле-строка.
 // Запишите её URL-адресом.
-
 // owner — _id пользователя, который сохранил фильм. Обязательное поле.
 // movieId — id фильма, который содержится в ответе сервиса MoviesExplorer. Обязательное поле.
 // nameRU — название фильма на русском языке. Обязательное поле-строка.
