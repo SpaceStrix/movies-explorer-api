@@ -46,11 +46,11 @@ const movieSchema = new mongoose.Schema({
       message: 'Поле "thumbnail" должно быть валидным url-адресом.',
     },
   },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
-  },
+  // owner: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'user',
+  //   required: true,
+  // },
   movieId: {
     type: Number,
     required: true,
