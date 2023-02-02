@@ -1,5 +1,11 @@
 # BackEnd дипломного проекта Movie
 
+## Запуск проекта
+
+`npm run start` — запускает сервер
+
+`npm run dev` — запускает сервер с hot-reload
+
 ## **Routes**
 
 | Method | Path         | Description                                             |
@@ -14,7 +20,7 @@
 
 ## Link
 
-| IPv4    | col2 |
-| ------- | ---- |
-|         |      |
-| backend |      |
+| Type       | IPv4           | URL                                   |
+| ---------- | -------------- | ------------------------------------- |
+| `frontend` | 84.201.138.129 | `moviespace.nomoredomainsclub.ru`     |
+| `backend`  | 84.201.138.129 | `api.moviespace.nomoredomainsclub.ru` |
