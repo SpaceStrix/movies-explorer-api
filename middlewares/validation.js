@@ -24,7 +24,6 @@ module.exports.updateDataUserValidation = celebrate({
     email: Joi.string().required(),
   }),
 });
-
 // Валидация создания фильма
 module.exports.createMovieValidation = celebrate({
   body: Joi.object().keys({
