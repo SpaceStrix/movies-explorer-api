@@ -7,7 +7,7 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 const routes = require('./routes');
 
-const rateLimit = require('./middlewares/rate-limiter');
+const { limiter } = require('./middlewares/rate-limiter');
 const { handlerErr } = require('./middlewares/handlerErr');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -17,7 +17,7 @@ const app = express();
 mongoose.set('strictQuery', false); // убираем варнинг mongoose
 mongoose.connect(DB_CONNECT);
 
-app.use(rateLimit);
+app.use(limiter);
 app.use(requestLogger);
 
 app.use(cors());
