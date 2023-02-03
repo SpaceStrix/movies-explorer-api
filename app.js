@@ -11,7 +11,7 @@ const { limiter } = require('./middlewares/rate-limiter');
 const { handlerErr } = require('./middlewares/handlerErr');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT, DB_CONNECT } = process.env;
+const { PORT = 3005, DB_CONNECT = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 const app = express();
 
 mongoose.set('strictQuery', false); // убираем варнинг mongoose
