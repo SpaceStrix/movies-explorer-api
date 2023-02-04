@@ -17,8 +17,8 @@ const app = express();
 mongoose.set('strictQuery', false); // убираем варнинг mongoose
 mongoose.connect(DB_CONNECT);
 
-app.use(limiter);
 app.use(requestLogger);
+app.use(limiter);
 
 app.use(cors());
 app.use(helmet());
